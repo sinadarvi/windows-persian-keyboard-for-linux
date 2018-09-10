@@ -34,3 +34,4 @@ add this line after `Persian (with Persian keypad)` section
 </variant>
 ...
 ```
+6. now logout and when you log back, go to `settings > Region and language` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
