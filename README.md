@@ -1,3 +1,10 @@
+I have been looking for a way to change to the keyboard layout of the Persian language for the Ubuntu operating system for a few years, which might be identical to the one I used to have while I was a windows user. This is probably the problem of most of the people who want to use Ubuntu. However, they cannot switch to it since it is almost impossible to type correctly using its predefined Persian language keyboard.  Finally, this nightmare ended for me when I find what dear @KotlinFarsi did a few years ago. However, after following his instruction, I realized that this is not working at least on version 18.04 LST+. So I decided to read his codes and generate an updated version of his file, which would work correctly. Here is the upgraded version of the file that I am currently using on Ubuntu 20.04 LST.
+
+The instruction is the same. I replaced the `ir` file with the updated version. I hope it would be helpful for those who get used to the layout of windows and love to work with a real operating system.
+
+The rest is Sina's orginial instruction.
+
+Enjoy.
 # Windows persian keyboard for ubuntu
 How to customize ubuntu persian keyboard layout to be like windows
 
