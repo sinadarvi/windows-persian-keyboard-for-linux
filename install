@@ -1,0 +1,4 @@
+mv /usr/share/X11/xkb/symbols/ir /usr/share/X11/xkb/symbols/ir-back
+wget https://raw.githubusercontent.com/rez4mt/windows-persian-keyboard-for-ubuntu/master/ir -P /usr/share/X11/xkb/symbols/
+mv /usr/share/X11/xkb/rules/evdev.xml /usr/share/X11/xkb/rules/evdev.xml-back
+wget https://raw.githubusercontent.com/rez4mt/windows-persian-keyboard-for-ubuntu/master/evdev.xml -P /usr/share/X11/xkb/rules/
