@@ -3,8 +3,6 @@ I have been looking for a way to change to the keyboard layout of the Persian la
 
 The instruction is the same. I replaced the `ir` file with the updated version. I hope it would be helpful for those who get used to the layout of windows and love to work with a real operating system.
 
-The rest was Sina's orginial instruction, now Reza's instruction is added.
-
 Enjoy.
 
 # Windows persian keyboard for ubuntu
