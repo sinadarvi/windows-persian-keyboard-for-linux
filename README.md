@@ -17,7 +17,7 @@ You have two options, either do it manually or use CURL to install it.
 1. You need to run the following command and the scrip will perform the steps for you.
 
 ```bash
- curl -s -L https://raw.githubusercontent.com/rez4mt/windows-persian-keyboard-for-ubuntu/master/install | sudo bash -
+ curl -s -L https://raw.githubusercontent.com/sinadarvi/windows-persian-keyboard-for-ubuntu/master/install | sudo bash -
 ```
 2. now logout and when you log back, go to `settings > Region and language` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
 
