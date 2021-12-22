@@ -20,7 +20,7 @@ xkb_symbols "pes" {
     include "ir(pes_part_ext)"
 
     include "nbsp(zwnj2nb3nnb4)"
-    include "level3(ralt_switch)"
+    include "altwin(menu)"
 };
 
 partial alphanumeric_keys
@@ -31,7 +31,7 @@ xkb_symbols "pes_win" {
     include "ir(pes_part_ext_win)"
 
     include "nbsp(zwnj2nb3nnb4)"
-    include "level3(ralt_switch)"
+    include "altwin(menu)"
 };
 
 
@@ -45,7 +45,7 @@ xkb_symbols "pes_keypad" {
     include "ir(pes_part_keypad)"
 
     include "nbsp(zwnj2nb3nnb4)"
-    include "level3(ralt_switch)"
+    include "altwin(menu)"
 };
 
 hidden partial alphanumeric_keys
@@ -321,7 +321,7 @@ xkb_symbols "ku_ara" {
     key <AB10> { [ slash,		Arabic_question_mark, 	question	] };
 
     include "nbsp(zwnj2nb3)"
-    include "level3(ralt_switch)"
+    include "altwin(menu)"
 };
 
 // EXTRAS:
