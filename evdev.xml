@@ -2976,6 +2976,24 @@
     </layout>
     <layout>
       <configItem>
+        <name>ir_win</name>
+        <shortDescription>fa</shortDescription>
+        <description>Persian</description>
+        <languageList>
+          <iso639Id>per-win</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>pes_win</name>
+            <description>Persian (Windows layout)</description>
+          </configItem>
+        </variant>
+      </variantList>
+    </layout>
+    <layout>
+      <configItem>
         <name>iq</name>
         
         <shortDescription>ar</shortDescription>

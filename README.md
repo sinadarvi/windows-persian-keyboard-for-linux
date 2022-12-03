@@ -28,7 +28,7 @@ cd /usr/share/X11/xkb/symbols
 ```
  2. make backup of persian symbol file
 ```bash
-cp ./ir ./ir-backup
+cp ./ir_win ./ir-backup
 ```
  3. copy `ir` file below and then modify symbols file
 ```bash
@@ -43,15 +43,27 @@ cp ./evdev.xml ./evdev-backup.xml
 ```bash
 sudo gedit ./evdev.xml
 ```
-add this line after `Persian (with Persian keypad)` section
+add this layout after `ir` layout
 ```xml
 ...
-<variant>
-  <configItem>
-    <name>pes_win</name>
-    <description>Persian (Windows layout)</description>
-  </configItem>
-</variant>
+<layout>
+      <configItem>
+        <name>ir_win</name>
+        <shortDescription>fa</shortDescription>
+        <description>Persian</description>
+        <languageList>
+          <iso639Id>per-win</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList>
+        <variant>
+          <configItem>
+            <name>pes_win</name>
+            <description>Persian (Windows layout)</description>
+          </configItem>
+        </variant>
+      </variantList>
+</layout>
 ...
 ```
 6. now logout and when you log back, go to `settings > Region and language` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
