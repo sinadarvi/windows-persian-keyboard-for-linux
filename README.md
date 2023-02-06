@@ -5,7 +5,7 @@ The instruction is the same. you should add `ir_win` file and change some settin
 
 Enjoy.
 
-# installation :
+## automatic installation :
 1. You need to run the following command and the scrip will perform the steps for you.
 
 ```bash
@@ -13,5 +13,33 @@ Enjoy.
 ```
 2. now go to `settings > Keyboard` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
 
+
+## Manual installation:
+ 1. add 'ir_win' layout to linux symbols
+```bash
+wget https://raw.githubusercontent.com/sinadarvi/windows-persian-keyboard-for-linux/master/ir_win -P /usr/share/X11/xkb/symbols/```
+```
+2. Add the new layout declaration to /usr/share/X11/xkb/rules/evdev.xml 
+```bash
+sudo gedit /usr/share/X11/xkb/rules/evdev.xml
+```
+3. add this layout after `ir` layout
+```xml
+...
+    <layout>
+      <configItem>
+        <name>ir_win</name>
+        <shortDescription>fa</shortDescription>
+        <description>Persian (Windows layout)</description>
+        <languageList>
+          <iso639Id>per-win</iso639Id>
+        </languageList>
+      </configItem>
+      <variantList>
+      </variantList>
+    </layout>
+...
+```
+4. now go to `settings > Keyboard` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
 
 
