@@ -1,71 +1,45 @@
 
-I have been looking for a way to change to the keyboard layout of the Persian language for the Ubuntu operating system for a few years, which might be identical to the one I used to have while I was a windows user. This is probably the problem of most of the people who want to use Ubuntu. However, they cannot switch to it since it is almost impossible to type correctly using its predefined Persian language keyboard.  Finally, this nightmare ended for me when I find what dear @KotlinFarsi did a few years ago. However, after following his instruction, I realized that this is not working at least on version 18.04 LTS+. So I decided to read his codes and generate an updated version of his file, which would work correctly. Here is the upgraded version of the file that I am currently using on Ubuntu 20.04 LTS.
+I have been looking for a way to change to the keyboard layout of the Persian language for the Ubuntu operating system for a few years, which might be identical to the one I used to have while I was a windows user. This is probably the problem of most of the people who want to use Ubuntu. However, they cannot switch to it since it is almost impossible to type correctly using its predefined Persian language keyboard.  Finally, this nightmare ended for me when I find what dear @KotlinFarsi did a few years ago. However, after following his instruction, I realized that this is not working at least on version 18.04 LTS+. So I decided to read his codes and generate an updated version of his file, which would work correctly.
 
-The instruction is the same. I replaced the `ir` file with the updated version. I hope it would be helpful for those who get used to the layout of windows and love to work with a real operating system.
+The instruction is the same. you should add `ir_win` file and change some settings. I hope it would be helpful for those who get used to the layout of windows and love to work with a real operating system.
 
 Enjoy.
 
-# Windows persian keyboard for ubuntu
-How to customize ubuntu persian keyboard layout to be like windows
-
-
-# Step
-
-You have two options, either do it manually or use CURL to install it.
-
-## Automatic installation :
+## automatic installation :
 1. You need to run the following command and the scrip will perform the steps for you.
 
 ```bash
  curl -s -L https://raw.githubusercontent.com/sinadarvi/windows-persian-keyboard-for-ubuntu/master/install | sudo bash -
 ```
-2. now logout and when you log back, go to `settings > Region and language` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
+2. now go to `settings > Keyboard` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
 
-## Manual :
- 1. first go to xkb folder
+
+## Manual installation:
+ 1. add 'ir_win' layout to linux symbols
 ```bash
-cd /usr/share/X11/xkb/symbols
+wget https://raw.githubusercontent.com/sinadarvi/windows-persian-keyboard-for-linux/master/ir_win -P /usr/share/X11/xkb/symbols/```
 ```
- 2. make backup of persian symbol file
+2. Add the new layout declaration to /usr/share/X11/xkb/rules/evdev.xml 
 ```bash
-cp ./ir_win ./ir-backup
+sudo gedit /usr/share/X11/xkb/rules/evdev.xml
 ```
- 3. copy `ir` file below and then modify symbols file
-```bash
-sudo gedit ./ir
-```
- 4. make backup of layout declaration
-```bash
-cd /usr/share/X11/xkb/rules
-cp ./evdev.xml ./evdev-backup.xml
-```
-5. Add the new layout declaration to /usr/share/X11/xkb/rules/evdev.xml (or copy `evdev.xml` file and paste it there)
-```bash
-sudo gedit ./evdev.xml
-```
-add this layout after `ir` layout
+3. add this layout after `ir` layout
 ```xml
 ...
-<layout>
+    <layout>
       <configItem>
         <name>ir_win</name>
         <shortDescription>fa</shortDescription>
-        <description>Persian</description>
+        <description>Persian (Windows layout)</description>
         <languageList>
           <iso639Id>per-win</iso639Id>
         </languageList>
       </configItem>
       <variantList>
-        <variant>
-          <configItem>
-            <name>pes_win</name>
-            <description>Persian (Windows layout)</description>
-          </configItem>
-        </variant>
       </variantList>
-</layout>
+    </layout>
 ...
 ```
-6. now logout and when you log back, go to `settings > Region and language` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
+4. now go to `settings > Keyboard` (or where ever your keyboard perference is) and in input sources click on `+` button and search for `Persian (Windows layout)`, and add it.
 
 
