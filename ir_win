@@ -56,7 +56,7 @@ xkb_symbols "pes_part_basic_win" {
     key <AC02> { [ Arabic_seen,		Arabic_damma		] };
     key <AC03> { [ Farsi_yeh,		Arabic_kasra		] };
     key <AC04> { [ Arabic_beh,		Arabic_shadda		] };
-    key <AC05> { [ Arabic_lam,		0x10006c0			] };
+    key <AC05> { [ Arabic_lam,		0x10006c0		] };
     key <AC06> { [ Arabic_alef,		Arabic_maddaonalef	] };
     key <AC07> { [ Arabic_teh,		Arabic_tatweel		] };
     key <AC08> { [ Arabic_noon,		guillemotright		] };
