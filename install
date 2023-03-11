@@ -16,7 +16,7 @@ exitcode() {
         0)  echo "Success";;
         1)  echo "Error: The script should be run as root." ;;
         2)  echo "Error: The script requires xmlstarlet to be installed." ;;
-        11) echo "Error: Failed to copy symbols file from repository to xkb." ;;
+        11) echo "Error: Failed to add Windows variant to the symbols file." ;;
         12) echo "Error: Failed to modify the xkb registry." ;;
         21) echo "Error: Failed to make a backup of the symbols file." ;;
         22) echo "Error: Failed to make a backup of the xkb registry." ;;
@@ -38,38 +38,40 @@ XML_VL_LAST="$XML_VL/variant[last()]"
 XML_VL_LCFG="$XML_VL_LAST/configItem"
 
 
+process_symbols() {
+
+    grep -q "Windows" "$XKBSYM" && return
+
+    ! cp "$XKBSYM" "$XKBSYM.backup" && exitcode 21
+
+    ! cat "./ir_patch" >> "$XKBSYM" &&
+    mv "$XKBSYM.backup" "$XKBSYM" && exitcode 11
+
+}
+
+
+process_registry() {
+
+    xmlstarlet sel -Q -t -c "$XML_VL_WIN" "$XKBREG" && return
+
+    ! cp "$XKBREG" "$XKBREG.backup" && exitcode 22
+
+    ! xmlstarlet ed -P -L \
+    -s "$XML_VL" -t elem -n "variant" \
+    -s "$XML_VL_LAST" -t elem -n "configItem" \
+    -s "$XML_VL_LCFG" -t elem -n "name" -v "pes_winkeys" \
+    -s "$XML_VL_LCFG" -t elem -n "description" -v "Persian (Windows)" \
+    "$XKBREG" &&
+    mv "$XKBREG.backup" "$XKBREG" && exitcode 12
+
+}
+
+
 cd "$(dirname "$0")"
 
-
-# Check if not running as root.
-
 [ "$EUID" -ne 0 ] && exitcode 1
-
-
-# Check for xmlstarlet dependency.
-
 ! command -v xmlstarlet &>/dev/null && exitcode 2
-
-
-# Process the symbols file
-
-! mv "$XKBSYM" "$XKBSYM.backup" && exitcode 21
-
-! cp "./ir" "$XKBSYM" && mv "$XKBSYM.backup" "$XKBSYM" && exitcode 11
-
-
-# Process the registry
-
-! xmlstarlet sel -Q -t -c "$XML_VL_WIN" "$XKBREG" &&
-! cp "$XKBREG" "$XKBREG.backup" && exitcode 22
-
-! xmlstarlet sel -Q -t -c "$XML_VL_WIN" "$XKBREG" &&
-! xmlstarlet ed -P -L \
--s "$XML_VL" -t elem -n "variant" \
--s "$XML_VL_LAST" -t elem -n "configItem" \
--s "$XML_VL_LCFG" -t elem -n "name" -v "pes_winkeys" \
--s "$XML_VL_LCFG" -t elem -n "description" -v "Persian (Windows)" \
-"$XKBREG" &&
-rm "$XKBREG" && mv "$XKBREG.backup" "$XKBREG" && exitcode 12
+process_symbols
+process_registry
 
 exitcode 0
