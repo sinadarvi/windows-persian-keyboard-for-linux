@@ -1,3 +1,75 @@
-wget https://raw.githubusercontent.com/sinadarvi/windows-persian-keyboard-for-linux/master/ir_win -P /usr/share/X11/xkb/symbols/
-mv /usr/share/X11/xkb/rules/evdev.xml /usr/share/X11/xkb/rules/evdev.xml-back
-wget https://raw.githubusercontent.com/sinadarvi/windows-persian-keyboard-for-linux/master/evdev.xml -P /usr/share/X11/xkb/rules/
+#!/bin/bash
+
+
+# Script for installing Windows Persian layout for Linux
+# https://github.com/sinadarvi/windows-persian-layout-for-linux
+
+# Script by cs127 <https://cs127.github.io>
+# 2023-03-11
+
+# Requirements:
+# * xmlstarlet
+
+
+exitcode() {
+    case $1 in
+        0)  echo "Success";;
+        1)  echo "Error: The script should be run as root." ;;
+        2)  echo "Error: The script requires xmlstarlet to be installed." ;;
+        11) echo "Error: Failed to copy symbols file from repository to xkb." ;;
+        12) echo "Error: Failed to modify the xkb registry." ;;
+        21) echo "Error: Failed to make a backup of the symbols file." ;;
+        22) echo "Error: Failed to make a backup of the xkb registry." ;;
+        *)  echo "Error"
+    esac
+    exit $1
+}
+
+
+[ -z "$XKBHOME" ] && XKBHOME="/usr/share/X11/xkb"
+
+XKBSYM="$XKBHOME/symbols/ir"
+XKBREG="$XKBHOME/rules/evdev.xml"
+
+XML_IR="/xkbConfigRegistry/layoutList/layout[configItem/name='ir']"
+XML_VL="$XML_IR/variantList"
+XML_VL_WIN="$XML_VL/variant[configItem/name='pes_winkeys']"
+XML_VL_LAST="$XML_VL/variant[last()]"
+XML_VL_LCFG="$XML_VL_LAST/configItem"
+
+
+cd "$(dirname "$0")"
+
+
+# Check if not running as root.
+
+[ "$EUID" -ne 0 ] && exitcode 1
+
+
+# Check for xmlstarlet dependency.
+
+! command -v xmlstarlet &>/dev/null && exitcode 2
+
+
+# Process the symbols file
+
+! mv "$XKBSYM" "$XKBSYM.backup" && exitcode 21
+
+! cp "./ir" "$XKBSYM" && mv "$XKBSYM.backup" "$XKBSYM" && exitcode 11
+
+
+# Process the registry
+
+! xmlstarlet sel -Q -t -c "$XML_VL_WIN" "$XKBREG" &&
+! cp "$XKBREG" "$XKBREG.backup" && exitcode 22
+
+! xmlstarlet sel -Q -t -c "$XML_VL_WIN" "$XKBREG" &&
+! xmlstarlet ed -P -L \
+-s "$XML_VL" -t elem -n "variant" \
+-s "$XML_VL_LAST" -t elem -n "configItem" \
+-s "$XML_VL_LCFG" -t elem -n "name" -v "pes_winkeys" \
+-s "$XML_VL_LCFG" -t elem -n "description" -v "Persian (Windows)" \
+"$XKBREG" &&
+rm "$XKBREG" && mv "$XKBREG.backup" "$XKBREG" && exitcode 12
+
+exitcode 0
