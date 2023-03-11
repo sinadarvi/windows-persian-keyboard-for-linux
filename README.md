@@ -1,6 +1,6 @@
 I have been looking for a way to change to the keyboard layout of the Persian language for the Ubuntu operating system for a few years, which might be identical to the one I used to have while I was a windows user. This is probably the problem of most of the people who want to use Ubuntu. However, they cannot switch to it since it is almost impossible to type correctly using its predefined Persian language keyboard.  Finally, this nightmare ended for me when I find what dear @KotlinFarsi did a few years ago. However, after following his instruction, I realized that this is not working at least on version 18.04 LTS+. So I decided to read his codes and generate an updated version of his file, which would work correctly.
 
-The instruction is the same. you should replace the `ir` file and change some settings. I hope it would be helpful for those who get used to the layout of windows and love to work with a real operating system.
+The instruction is the same. you should modify the `ir` and `evdev.xml` files. I hope it would be helpful for those who get used to the layout of windows and love to work with a real operating system.
 
 Enjoy.
 
@@ -39,16 +39,17 @@ git clone https://github.com/sinadarvi/windows-persian-keyboard-for-linux.git
 cd windows-persian-keyboard-for-linux
 ```
 
-2. Replace the `ir` symbols file.
+2. Append the `ir_patch` file from the repo to the `ir` symbols file.
 
 ```bash
-sudo mv /usr/share/X11/xkb/symbols/ir /usr/share/X11/xkb/symbols/ir.backup
-sudo cp ./ir /usr/share/X11/xkb/symbols/ir
+sudo cp /usr/share/X11/xkb/symbols/ir /usr/share/X11/xkb/symbols/ir.backup
+sudo cat ./ir | sudo tee -a /usr/share/X11/xkb/symbols/ir &>/dev/null
 ```
 
 3. Edit the xkb layouts registry with your text editor of choice (vim for example),
 
 ```bash
+sudo cp /usr/share/X11/xkb/rules/evdev.xml /usr/share/X11/xkb/rules/evdev.xml.backup
 sudo vim /usr/share/X11/xkb/rules/evdev.xml
 ```
 
