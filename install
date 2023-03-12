@@ -13,7 +13,7 @@
 
 exitcode() {
     case $1 in
-        0)  echo "Success";;
+        0)  echo "Success" ;;
         1)  echo "Error: The script should be run as root." ;;
         2)  echo "Error: The script requires xmlstarlet to be installed." ;;
         11) echo "Error: Failed to add Windows variant to the symbols file." ;;
