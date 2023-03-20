@@ -1,10 +1,10 @@
+**Note: if you are using xkeyboard-config version 2.39 or newer, you already have the Windows Persian layout installed, and don't need this repo.**
+
 I have been looking for a way to change to the keyboard layout of the Persian language for the Ubuntu operating system for a few years, which might be identical to the one I used to have while I was a windows user. This is probably the problem of most of the people who want to use Ubuntu. However, they cannot switch to it since it is almost impossible to type correctly using its predefined Persian language keyboard.
 
-The instruction is the same. you should modify the `ir` and `evdev.xml` files. I hope it would be helpful for those who get used to the layout of windows and love to work with a real operating system.
+I hope it would be helpful for those who get used to the layout of Windows and love to work with a real operating system.
 
 Enjoy.
-
-**Note: If your Linux distribution has a version of xkb with [!473](https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/merge_requests/473) merged, you already have a Windows Persian layout, and do not need this repo.**
 
 
 ## Automatic Installation
@@ -12,7 +12,7 @@ Enjoy.
 The automatic installer script requires `xmlstarlet` to be installed.
 Install it using your package manager before running the script.
 
-**Warning: The automatic installer does not detect any previous versions of this project. Make sure you don't already have an older version of the Windows Persian layout installed.**
+**Warning: The automatic installer does not detect any previous versions of this project. If you are updating from a previous version, make sure you don't already have an older version of the Windows Persian layout installed.**
 
 1. Clone the repository
 
@@ -43,7 +43,7 @@ cd windows-persian-keyboard-for-linux
 
 ```bash
 sudo cp /usr/share/X11/xkb/symbols/ir /usr/share/X11/xkb/symbols/ir.backup
-sudo cat ./ir | sudo tee -a /usr/share/X11/xkb/symbols/ir &>/dev/null
+cat ./ir_patch | sudo tee -a /usr/share/X11/xkb/symbols/ir >/dev/null
 ```
 
 3. Edit the xkb layouts registry with your text editor of choice (vim for example),
@@ -58,7 +58,7 @@ find the Persian layout and add this variant to the list of variants for Persian
 ```xml
         <variant>
           <configItem>
-            <name>pes_winkeys</name>
+            <name>winkeys</name>
             <description>Persian (Windows)</description>
           </configItem>
         </variant>

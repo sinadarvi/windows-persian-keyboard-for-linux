@@ -5,7 +5,7 @@
 # https://github.com/sinadarvi/windows-persian-layout-for-linux
 
 # Script by cs127 <https://cs127.github.io>
-# 2023-03-11
+# 2023-03-20
 
 # Requirements:
 # * xmlstarlet
@@ -33,7 +33,7 @@ XKBREG="$XKBHOME/rules/evdev.xml"
 
 XML_IR="/xkbConfigRegistry/layoutList/layout[configItem/name='ir']"
 XML_VL="$XML_IR/variantList"
-XML_VL_WIN="$XML_VL/variant[configItem/name='pes_winkeys']"
+XML_VL_WIN="$XML_VL/variant[configItem/name='winkeys']"
 XML_VL_LAST="$XML_VL/variant[last()]"
 XML_VL_LCFG="$XML_VL_LAST/configItem"
 
@@ -59,7 +59,7 @@ process_registry() {
     ! xmlstarlet ed -P -L \
     -s "$XML_VL" -t elem -n "variant" \
     -s "$XML_VL_LAST" -t elem -n "configItem" \
-    -s "$XML_VL_LCFG" -t elem -n "name" -v "pes_winkeys" \
+    -s "$XML_VL_LCFG" -t elem -n "name" -v "winkeys" \
     -s "$XML_VL_LCFG" -t elem -n "description" -v "Persian (Windows)" \
     "$XKBREG" &&
     mv "$XKBREG.backup" "$XKBREG" && exitcode 12
