@@ -43,7 +43,7 @@ cd windows-persian-keyboard-for-linux
 
 ```bash
 sudo cp /usr/share/X11/xkb/symbols/ir /usr/share/X11/xkb/symbols/ir.backup
-sudo cat ./ir | sudo tee -a /usr/share/X11/xkb/symbols/ir &>/dev/null
+sudo cat ./ir_patch | sudo tee -a /usr/share/X11/xkb/symbols/ir &>/dev/null
 ```
 
 3. Edit the xkb layouts registry with your text editor of choice (vim for example),
