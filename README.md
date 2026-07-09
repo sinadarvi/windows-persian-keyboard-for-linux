@@ -30,6 +30,19 @@ sudo ./install
 3. All done! You can now go to your keyboard settings and add the `Persian (Windows)` layout.
 
 
+## Enable From the Terminal
+
+After installing the layout, you can enable it for the current X11 session with:
+
+```bash
+setxkbmap -layout us,ir -variant ',pes_winkeys' -option grp:alt_shift_toggle
+```
+
+This configures `us` and `ir` layouts, uses the `pes_winkeys` variant for the Persian layout, and enables switching between layouts with <kbd>Alt</kbd> + <kbd>Shift</kbd>. The leading comma in `',pes_winkeys'` means that no variant is set for the first layout (`us`).
+
+To make this persistent, add the command to your X session startup file, such as `~/.xprofile`, `~/.xinitrc`, or your desktop environment/window manager autostart configuration. Avoid adding it to `~/.bashrc`, because that file runs for every interactive shell and may run when no X11 session is available.
+
+
 ## Manual Installation
 
 1. Clone the repository
@@ -43,7 +56,7 @@ cd windows-persian-keyboard-for-linux
 
 ```bash
 sudo cp /usr/share/X11/xkb/symbols/ir /usr/share/X11/xkb/symbols/ir.backup
-sudo cat ./ir | sudo tee -a /usr/share/X11/xkb/symbols/ir &>/dev/null
+sudo cat ./ir_patch | sudo tee -a /usr/share/X11/xkb/symbols/ir &>/dev/null
 ```
 
 3. Edit the xkb layouts registry with your text editor of choice (vim for example),
