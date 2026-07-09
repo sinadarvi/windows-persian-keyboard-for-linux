@@ -30,6 +30,22 @@ sudo ./install
 3. All done! You can now go to your keyboard settings and add the `Persian (Windows)` layout.
 
 
+## Special Characters
+
+The zero-width non-joiner (ZWNJ / nim fasele) is available with <kbd>Shift</kbd> + <kbd>Space</kbd>.
+
+The Space key uses XKB's `nbsp(zwnj2nb3nnb4)` mapping:
+
+| Shortcut | Character |
+| --- | --- |
+| <kbd>Space</kbd> | Regular space |
+| <kbd>Shift</kbd> + <kbd>Space</kbd> | Zero-width non-joiner (`U+200C`) |
+| <kbd>Right Alt</kbd> + <kbd>Space</kbd> | Non-breaking space |
+| <kbd>Shift</kbd> + <kbd>Right Alt</kbd> + <kbd>Space</kbd> | Narrow non-breaking space |
+
+The Windows shortcut <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>2</kbd> is not implemented by this layout.
+
+
 ## Enable From the Terminal
 
 After installing the layout, you can enable it for the current X11 session with:
