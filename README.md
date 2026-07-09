@@ -43,6 +43,17 @@ This configures `us` and `ir` layouts, uses the `pes_winkeys` variant for the Pe
 To make this persistent, add the command to your X session startup file, such as `~/.xprofile`, `~/.xinitrc`, or your desktop environment/window manager autostart configuration. Avoid adding it to `~/.bashrc`, because that file runs for every interactive shell and may run when no X11 session is available.
 
 
+## Using with i3
+
+If you use i3, add the `setxkbmap` command to your i3 config:
+
+```bash
+exec_always --no-startup-id setxkbmap -layout us,ir -variant ',pes_winkeys' -option grp:alt_shift_toggle
+```
+
+Then reload or restart i3. This keeps the same English/Persian setup from the terminal example and enables switching with <kbd>Alt</kbd> + <kbd>Shift</kbd>.
+
+
 ## Manual Installation
 
 1. Clone the repository
