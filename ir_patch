@@ -59,5 +59,4 @@ xkb_symbols "pes_winkeys" {
     key <AB10> { [ slash,		Arabic_question_mark	] };
 
     include "nbsp(zwnj2nb3nnb4)"
-    include "level3(ralt_switch)"
 };
